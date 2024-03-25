@@ -31,7 +31,9 @@ A grocery in Polland needs to monitor their sale so they can make sale strategy 
 </p>
 
 ### 2.2 Data Exploration
-  The exploration will be executed with steps below : 
+  <p>
+    The exploration will be executed with steps below : 
+  </p>
 <ol type = "a">
   <li>Initially, exploration performed on metadata to understand every table and fields inside</li> <br>
   <li>Focuss of the exploration is to identifiy duplicate, null, formating, and outliers</li> <br>
