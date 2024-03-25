@@ -8,9 +8,13 @@
   3. Tranform Data
   4. Analyse 
   5. Sharing
-  6. Act  
-<hr>
+  6. Act
+<p>
+  Interactive Dashboard here : <a href="https://www.kaggle.com/datasets/agatii/total-sale-2018-yearly-data-of-grocery-shop">Grocery Sales Dashboard</a>
+</p>
 
+<img src="https://github.com/prioaji/Grocery_Sales_Dashboard_by_Aji/blob/main/Dashboard%201%20(1).png" alt="preview">
+<hr>
 
 ## 1. Defining Bussines Needs or Problems
 <p>
@@ -19,68 +23,68 @@ A grocery in Polland needs to monitor their sale so they can make sale strategy 
   <ol type = "a">
     <li>Total or particular gross sales and net profit </li>
     <li>Product sale by category </li>
-    <li>Hihest and lowest product sold </li>
+    <li>Highest and lowest product sold </li>
     <li>Average stock level </li>
   </ol>
-  <br>
 
 ## 2. Data Preparing, Exploring, & Cleaning
+
 ### 2.1 Data Preparation
 <p>
   Sales Grocery datasets accessed then dowloaded from Kaggle <a href="https://www.kaggle.com/datasets/agatii/total-sale-2018-yearly-data-of-grocery-shop">Data Source</a> and contains 3 table including : daily sale, sell, and product rotation. This data will be explored and cleaned with SQL in BigQueries. Analyse and sharing will be conducted in Tableau.
 </p>
 
 ### 2.2 Data Exploration
-  <p>
-    The exploration will be executed with steps below : 
-  </p>
+<p>
+  The exploration will be executed with steps below : 
+</p>
 <ol type = "a">
-  <li>Initially, exploration performed on metadata to understand every table and fields inside</li> <br>
-  <li>Focuss of the exploration is to identifiy duplicate, null, formating, and outliers</li> <br>
-  <li>Exploring data use Query **Data Exploration** in the sql file above </li> <br> 
-  <li>The result of exploration then cleaned and transformed with Query **Data Transformation** above</li> <br>
+  <li>Initially, exploration performed on metadata to understand every table and fields inside</li>
+  <li>Focuss of the exploration is to identifiy duplicate, null, formating, and outliers</li>
+  <li>Exploring data use Query <b>Data Exploration</b> in the sql file above </li>
+  <li>The result of exploration then cleaned and transformed with Query <b>Data Transformation</b> above</li>
 </ol>
-Results of Exploration is below : 
+  Results of Exploration is below : 
 <br>
 <table>
-  <caption>Summary of Data Explotation</caption>
-  <tr>
-    <th>Dataset</th>
-    <th>Null</th>
-    <th>Duplicate</th>
-    <th>Inconsistency</th>
-    <th>Note</th>
-  </tr>
-  <tr>
-    <td>day sell</td>
-    <td>NO</td>
-    <td>NO</td>
-    <td>YES</td>
-    <td>NOT USED</td>
-  </tr>
-  <tr>
-    <td>sell</td>
-    <td>NO</td>
-    <td>NO</td>
-    <td>NO</td>
-    <td>USED</td>
-  </tr>
-  <tr>
-    <td>rotation</td>
-    <td>YES</td>
-    <td>NO</td>
-    <td>YES</td>
-    <td>USED</td>
-  </tr>
+ <caption>Summary of Data Explotation</caption>
+ <tr>
+   <th>Dataset</th>
+   <th>Null</th>
+   <th>Duplicate</th>
+   <th>Inconsistency</th>
+   <th>Note</th>
+ </tr>
+ <tr>
+   <td>day sell</td>
+   <td>NO</td>
+   <td>NO</td>
+   <td>YES</td>
+   <td>NOT USED</td>
+ </tr>
+ <tr>
+   <td>sell</td>
+   <td>NO</td>
+   <td>NO</td>
+   <td>NO</td>
+   <td>USED</td>
+ </tr>
+ <tr>
+   <td>rotation</td>
+   <td>YES</td>
+   <td>NO</td>
+   <td>YES</td>
+   <td>USED</td>
+ </tr>
 </table>
 
 <ol type ="a">
-  <li> <b>day_sale</b> table will use column Date as a primary key. There is no duplicate or null. The changes needed is in fields name and date format. That will be done in Data Cleaning later.</li> <br>
-  <li> <b>sell</b> table can only has foreign key (Date, Pkod). The changes needed is in fields name and date format. Pkod (product code) has 5277 unique value, can be compared to other table.</li> <br>
-  <li> <b>rotation</b> table has no duplication but has null that has to be replaced with 0 AS FLOAT. Pkod count is 16294 (bigger than 'sell' table), it is caused by no sale in some product.</li> <br>
-  <li> <b>day_sale</b> gross revenue compared to <b>sell</b> to check its consistency, the result is that both of gross sale has different value so the dataset will use is only 'sell'  </li> <br>
-<ol>
-
+ <li> <b>day_sale</b> table will use column Date as a primary key. There is no duplicate or null. The changes needed is in fields name and date format. That will be done in Data Cleaning later.</li>
+ <li> <b>sell</b> table can only has foreign key (Date, Pkod). The changes needed is in fields name and date format. Pkod (product code) has 5277 unique value, can be compared to other table.</li>
+ <li> <b>rotation</b> table has no duplication but has null that has to be replaced with 0 AS FLOAT. Pkod count is 16294 (bigger than 'sell' table), it is caused by no sale in some product.</li>
+ <li> <b>day_sale</b> gross revenue compared to <b>sell</b> to check its consistency, the result is that both of gross sale has different value so the dataset will be used is only 'sell'  </li>
+<ol><br>
+  
 ### 2.3 Data Cleaning
 <p>
   Data Cleaning will be conducted together with transformation below.
