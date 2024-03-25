@@ -1,70 +1,121 @@
 # Grocery Sales Dasboard
 <p> 
-  Dashboard is a display of integrated data that visualized to give digestable information to stakeholder. Dashboard usually use metrics that important for top level management an related to any fields. In this case, dashboard for sales will contains at least gross sales, net sales, margin, and total product sales. After analysing and gain insight, there is a chance to add more metrics if necessary for stake holder. This project's objective is to make dashboard with these sistematic steps : 
+  Dashboard is a display of visualized data to give digestable information for stakeholder. Dashboard usually use metrics that important for top level management an related to any fields. In this case, dashboard for sales will contains at least gross sales, profit, margin, and total product sales. After analysing and gain insight, there is a chance to add more metrics if necessary for stakeholder. This project's objective is to make dashboard with these sistematic steps : 
 </p>
 
   1. Defining Bussines Needs or Problems
-  2. Data Preparing & Cleaning
-  3. Data Manipulating
+  2. Prepare, Explore, & Clean Data
+  3. Tranform Data
   4. Analyse 
   5. Sharing
   6. Act  
 <hr>
+
 
 ## 1. Defining Bussines Needs or Problems
 <p>
 A grocery in Polland needs to monitor their sale so they can make sale strategy and improvement base on data. They have transaction records from 2018. Owner of grocery want to know these metrics :
 </p>
   <ol type = "a">
-    <li>Total or particular gross revenue and net provit per month </li>
-    <li>Product sold by category </li>
+    <li>Total or particular gross sales and net profit </li>
+    <li>Product sale by category </li>
     <li>Hihest and lowest product sold </li>
     <li>Average stock level </li>
   </ol>
+  <br>
 
 ## 2. Data Preparing, Exploring, & Cleaning
-### 2.1 Data Preparing
+### 2.1 Data Preparation
 <p>
-  Sales Grocery datasets accessed then dowloaded from Kaggle and contains 3 table including : daily sale, product rotation, and all selling. This data will be explored and cleaned with SQL in BigQueries. Analyse and sharing will be conducted in Tableau. 
+  Sales Grocery datasets accessed then dowloaded from Kaggle <a href="https://www.kaggle.com/datasets/agatii/total-sale-2018-yearly-data-of-grocery-shop">Data Source</a> and contains 3 table including : daily sale, sell, and product rotation. This data will be explored and cleaned with SQL in BigQueries. Analyse and sharing will be conducted in Tableau.
 </p>
 
-### 2.2 Data Exploring
-<p>
+### 2.2 Data Exploration
   The exploration will be executed with steps below : 
 <ol type = "a">
   <li>Initially, exploration performed on metadata to understand every table and fields inside</li> <br>
   <li>Focuss of the exploration is to identifiy duplicate, null, formating, and outliers</li> <br>
-  <li>Exploring data use Query **Data Exploration** </li> <br> 
-  <li>The result of exploration then cleaned with Query **Data Cleaning**</li> <br>
+  <li>Exploring data use Query **Data Exploration** in the sql file above </li> <br> 
+  <li>The result of exploration then cleaned and transformed with Query **Data Transformation** above</li> <br>
 </ol>
-<br>
 Results of Exploration is below : 
+<br>
+<table>
+  <caption>Summary of Data Explotation</caption>
+  <tr>
+    <th>Dataset</th>
+    <th>Null</th>
+    <th>Duplicate</th>
+    <th>Inconsistency</th>
+    <th>Note</th>
+  </tr>
+  <tr>
+    <td>day sell</td>
+    <td>NO</td>
+    <td>NO</td>
+    <td>YES</td>
+    <td>NOT USED</td>
+  </tr>
+  <tr>
+    <td>sell</td>
+    <td>NO</td>
+    <td>NO</td>
+    <td>NO</td>
+    <td>USED</td>
+  </tr>
+  <tr>
+    <td>rotation</td>
+    <td>YES</td>
+    <td>NO</td>
+    <td>YES</td>
+    <td>USED</td>
+  </tr>
+</table>
+
 <ol type ="a">
   <li> <b>day_sale</b> table will use column Date as a primary key. There is no duplicate or null. The changes needed is in fields name and date format. That will be done in Data Cleaning later.</li> <br>
   <li> <b>sell</b> table can only has foreign key (Date, Pkod). The changes needed is in fields name and date format. Pkod (product code) has 5277 unique value, can be compared to other table.</li> <br>
-  <li> <b>rotation</b> table has no duplication but has null. Pkod count is 16294 (bigger than 'sell' table), it is caused by no sale in some product.</li> <br>
-  <li> <b>day_sale</b> gross revenue compared to <b>sell</b> to check its consistency, result is  </li> <br>
-  <li> </li>
+  <li> <b>rotation</b> table has no duplication but has null that has to be replaced with 0 AS FLOAT. Pkod count is 16294 (bigger than 'sell' table), it is caused by no sale in some product.</li> <br>
+  <li> <b>day_sale</b> gross revenue compared to <b>sell</b> to check its consistency, the result is that both of gross sale has different value so the dataset will use is only 'sell'  </li> <br>
 <ol>
-</p>
-  
+
 ### 2.3 Data Cleaning
-**day_sale** table will use column Date as a primary key and Pkod (product code) as a foreign key. <br>
-      result 
+<p>
+  Data Cleaning will be conducted together with transformation below.
+</p>
 
-## Data Manipulating
-## Analyse
-## Sharing
-## Act
+## 3. Data Manipulating
+<p>
+  Data transformation process that has been done, use <b>Data Transformation</b> sql file above. The query is used to do these transformation.
+  <ol type="a">
+    <li>Change field name from Polish to English so it will easier to understand by many viewer.</li>
+    <li>Use JOIN and nesting function to fulfill missing value with foreign key.</li>
+    <li>Use CAST and COALESE to replace null with 0.</li>
+    <li>Use DISTINT to make sure no duplication.</li>
+  </ol>
+</p>
 
+## 4. Analyse
+<p>
+  With limited data, analysis is covered for only 1 year. Metrics can be analysed are total gross sale, total profit, total product sale, and inventory turnover. For better understanding, we classified product into 3 group : fast, moderate, slow. Higher product sale is more fast its rotation. Analysis and visualize is done using Tableau.
+  There are several findings after analysing :
+  <ol type="a">
+    <li>In year time frame, product sale reach its peak in the middle and the end of the year.</li>
+    <li>Profit margin is good enough for retail bussines.</li>
+    <li>Inventory turnover is so low. Ordering product should be decreased to reach warehouse eficiency without worrying about lost sell.</li>
+    <li>There are many product that has low selling or even no selling that should be evaluated.</li>
+  </ol>
+</p>
 
-
-
-
-_Sales Dasboard_
-# Sales Dasboard
-## Sales Dasboard
->Dashboard is a display contains visualized metrics that related to a specified case/work so stakeholder can read data easily
-
-
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://media.licdn.com/dms/image/D5622AQH1_PNwOc66Fg/feedshare-shrink_2048_1536/0/1709649572913?e=1714003200&v=beta&t=rK9KrPEXBglZYYRD8iybeXnwhozcrs88w-F2lcT0u8c)
+## 5. Sharing
+<p>
+  Visualization can be seen in this Tableau <a href="https://public.tableau.com/shared/7DSB2KZSF?:display_count=n&:origin=viz_share_link">Grocery Sales Dashboard</a>
+</p>
+ 
+## 6. Act
+There are several recomendation after analyse and sharing :
+<ol type = "a">
+  <li>Reduce product order to decrease inventory level.</li>
+  <li>Evaluate the low selling product and decrease stock of that product.</li>
+  <li>Evaluate the data collection process because current data has low integrity.</li>
+</ol>
