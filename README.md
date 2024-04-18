@@ -1,6 +1,9 @@
 # Grocery Sales Dasboard
 <p> 
-  Dashboard is a display of visualized data to give digestable information for stakeholder. Dashboard usually use metrics that important for top level management an related to any fields. In this case, dashboard for sales will contains at least gross sales, profit, margin, and total product sales. After analysing and gain insight, there is a chance to add more metrics if necessary for stakeholder. This project's objective is to make dashboard with these sistematic steps : 
+  Dashboard is a display of visualized data to give digestable information for stakeholder. Dashboard usually use metrics that important for top level management an related to any fields. Users can manipulate filters on dashboard to get particular information based on several criteria such as geographic, year, minimum value, etc.
+</p>
+<p>
+  In this case, dashboard for sales will contains at least gross sales, profit, margin, and total product sales. After analysing and gain insight, there is a chance to add more metrics if necessary for stakeholder. This project's objective is to make dashboard with these sistematic steps : 
 </p>
 
   1. Defining Bussines Needs or Problems
@@ -10,7 +13,7 @@
   5. Sharing
   6. Act
 <p>
-  Interactive Dashboard here : <a href="https://www.kaggle.com/datasets/agatii/total-sale-2018-yearly-data-of-grocery-shop">Grocery Sales Dashboard</a>
+  Interactive Dashboard on Tableau : <a href="https://www.kaggle.com/datasets/agatii/total-sale-2018-yearly-data-of-grocery-shop">Grocery Sales Dashboard</a>
 </p>
 
 <img src="https://github.com/prioaji/Grocery_Sales_Dashboard_by_Aji/blob/main/Dashboard%201%20(1).png" alt="preview">
@@ -18,7 +21,7 @@
 
 ## 1. Defining Bussines Needs or Problems
 <p>
-A grocery in Polland needs to monitor their sale so they can make sale strategy and improvement base on data. They have transaction records from 2018. Owner of grocery want to know these metrics :
+A grocery in Polland needs to monitor their store sales so they can make selling strategy and improvement base on data. They have transaction records from 2018. Owner of grocery want to know these metrics :
 </p>
   <ol type = "a">
     <li>Total or particular gross sales and net profit </li>
@@ -47,9 +50,9 @@ A grocery in Polland needs to monitor their sale so they can make sale strategy 
   Results of Exploration is below : 
 <br>
 <table>
- <caption>Summary of Data Explotation</caption>
+ <caption>Table 1. Summary of Data Explotation</caption>
  <tr>
-   <th>Dataset</th>
+   <th>Data Table</th>
    <th>Null</th>
    <th>Duplicate</th>
    <th>Inconsistency</th>
@@ -90,14 +93,14 @@ A grocery in Polland needs to monitor their sale so they can make sale strategy 
   Data Cleaning will be conducted together with transformation below.
 </p>
 
-## 3. Data Manipulating
+## 3. Data Transformation
 <p>
   Data transformation process that has been done, use <b>Data Transformation</b> sql file above. The query is used to do these transformation.
   <ol type="a">
     <li>Change field name from Polish to English so it will easier to understand by many viewer.</li>
-    <li>Use JOIN and nesting function to fulfill missing value with foreign key.</li>
+    <li>Use JOIN function and nesting query to fulfill missing value with foreign key.</li>
     <li>Use CAST and COALESE to replace null with 0.</li>
-    <li>Use DISTINT to make sure no duplication.</li>
+    <li>Use DISTINCT to make sure no duplication.</li>
   </ol>
 </p>
 
@@ -106,7 +109,7 @@ A grocery in Polland needs to monitor their sale so they can make sale strategy 
   With limited data, analysis is covered for only 1 year. Metrics can be analysed are total gross sale, total profit, total product sale, and inventory turnover. For better understanding, we classified product into 3 group : fast, moderate, slow. Higher product sale is more fast its rotation. Analysis and visualize is done using Tableau.
   There are several findings after analysing :
   <ol type="a">
-    <li>In year time frame, product sale reach its peak in the middle and the end of the year.</li>
+    <li>In year time frame, product sale reach its peak in the middle of the year.</li>
     <li>Profit margin is good enough for retail bussines.</li>
     <li>Inventory turnover is so low. Ordering product should be decreased to reach warehouse eficiency without worrying about lost sell.</li>
     <li>There are many product that has low selling or even no selling that should be evaluated.</li>
