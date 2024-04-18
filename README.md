@@ -1,4 +1,4 @@
-# Grocery Sales Dasboard
+# Grocery Sales Dasboard with Tableau
 <p> 
   Dashboard is a display of visualized data to give digestable information for stakeholder. Dashboard usually use metrics that important for top level management an related to any fields. Users can manipulate filters on dashboard to get particular information based on several criteria such as geographic, year, minimum value, etc.
 </p>
